@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.pyc
+.env
+.DS_Store
+backend/data/raw/
+backend/data/processed/.*.tmp
+backend/data/processed/last-attempt.json
+node_modules/
+dist/
+.vercel/

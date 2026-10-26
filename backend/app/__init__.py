@@ -1,0 +1,1 @@
+"""WindScope historical analysis service."""

@@ -1,0 +1,52 @@
+[
+  {
+    "url": "https://data.elexon.co.uk/swagger/v1/swagger.json",
+    "status": 200,
+    "content_type": "application/json;charset=utf-8",
+    "retrieved_at": "2026-10-26T07:13:33.501936+00:00",
+    "sha256_uncompressed": "7710bb452e47e448dad8b978a0313d9bf127a6faa0c2b623891ff281f807101a",
+    "bytes_uncompressed": 1480105,
+    "file": "responses/openapi.json.gz",
+    "row_count": null
+  },
+  {
+    "url": "https://data.elexon.co.uk/bmrs/api/v1/datasets/WINDFOR/stream?publishDateTimeFrom=2025-12-30T00%3A00%3A00Z&publishDateTimeTo=2026-02-03T00%3A00%3A00Z",
+    "status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "retrieved_at": "2026-10-26T07:13:35.313448+00:00",
+    "sha256_uncompressed": "9e3c9dbb889b27798b5dca39aad1fb002269bd14f6ffe4b9d44a5e40e54e91dd",
+    "bytes_uncompressed": 2303099,
+    "file": "responses/windfor-publications.json.gz",
+    "row_count": 20440
+  },
+  {
+    "url": "https://data.elexon.co.uk/bmrs/api/v1/datasets/FUELHH/stream?settlementDateFrom=2026-01-02&settlementDateTo=2026-02-01&fuelType=WIND",
+    "status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "retrieved_at": "2026-10-26T07:13:36.733273+00:00",
+    "sha256_uncompressed": "65402b5dde43a2bd28bb71edd345371a06006247e0e134ccba20c8ecfec93ba3",
+    "bytes_uncompressed": 269923,
+    "file": "responses/fuelhh-deliveries.json.gz",
+    "row_count": 1488
+  },
+  {
+    "url": "https://data.elexon.co.uk/bmrs/api/v1/datasets/WINDFOR/stream?publishDateTimeFrom=2026-01-01T09%3A30%3A00Z&publishDateTimeTo=2026-01-01T09%3A30%3A00Z",
+    "status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "retrieved_at": "2026-10-26T07:13:37.539578+00:00",
+    "sha256_uncompressed": "d804b5e81b60137762fd8d7058c814f78f4ab6d1308a753824108ec893493268",
+    "bytes_uncompressed": 8250,
+    "file": "responses/windfor-inclusive-boundary.json.gz",
+    "row_count": 73
+  },
+  {
+    "url": "https://data.elexon.co.uk/bmrs/api/v1/datasets/FUELHH/stream?settlementDateFrom=2026-02-01&settlementDateTo=2026-02-01&fuelType=WIND",
+    "status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "retrieved_at": "2026-10-26T07:13:38.255783+00:00",
+    "sha256_uncompressed": "15e5f5dcb2e3233e40a5dd964f1c99672f8a0a7a640d73fce8652124869984be",
+    "bytes_uncompressed": 8680,
+    "file": "responses/fuelhh-single-date.json.gz",
+    "row_count": 48
+  }
+]

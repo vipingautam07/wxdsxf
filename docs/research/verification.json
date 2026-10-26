@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "kind": "offline_phase_1_evidence_checks_not_application_tests",
+  "verified_at": "2026-10-26T07:18:18.587145+00:00",
+  "checks": [
+    "Research script parses as Python",
+    "All 5 archived response hashes match the manifest and HTTP statuses are 200",
+    "20440 forecasts comprise 280 distinct publications with 73 target rows each",
+    "1488 unique WIND actual intervals, no null generation",
+    "744 latest eligible hourly forecasts at the 11:00 Europe/London cutoff",
+    "All 744 hours have both actual settlement periods",
+    "31 daily coverage rows each contain 24 forecast hours and 48 actual periods",
+    "Publication equality and settlement-date equality boundaries include the requested records",
+    "18699 MW eligible example and 18800 MW excluded future-revision example match source"
+  ],
+  "not_run": [
+    "Pytest application suite",
+    "React production build",
+    "Docker build/runtime",
+    "Vercel build/deployment"
+  ]
+}

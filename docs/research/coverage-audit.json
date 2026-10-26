@@ -1,0 +1,210 @@
+{
+  "decision_dates": [
+    "2026-01-01",
+    "2026-01-31"
+  ],
+  "delivery_dates": [
+    "2026-01-02",
+    "2026-02-01"
+  ],
+  "cutoff_uk_local": "11:00",
+  "expected_forecast_hours": 744,
+  "expected_actual_settlement_periods": 1488,
+  "forecast_rows_downloaded": 20440,
+  "actual_rows_downloaded": 1488,
+  "forecast_target_minutes": {
+    "00": 20440
+  },
+  "forecast_publish_bounds": [
+    "2025-12-30T02:30:00Z",
+    "2026-02-02T22:30:00Z"
+  ],
+  "actual_target_bounds": [
+    "2026-01-02T00:00:00Z",
+    "2026-02-01T23:30:00Z"
+  ],
+  "actual_fuel_types": [
+    "WIND"
+  ],
+  "missing_actual_periods": [],
+  "missing_eligible_forecast_hours": [],
+  "duplicate_forecast_keys": 0,
+  "duplicate_actual_targets": 0,
+  "null_forecast_generation": 0,
+  "null_actual_generation": 0,
+  "equal_publication_bounds_rows": 73,
+  "equal_publication_bounds_values": [
+    "2026-01-01T09:30:00Z"
+  ],
+  "single_settlement_date_rows": 48,
+  "single_settlement_date_values": [
+    "2026-02-01"
+  ],
+  "selected_publications_utc": [
+    "09:30:00Z"
+  ],
+  "jan_2_midnight_selected_example": {
+    "dataset": "WINDFOR",
+    "publishTime": "2026-01-01T09:30:00Z",
+    "startTime": "2026-01-02T00:00:00Z",
+    "generation": 18699
+  },
+  "daily": [
+    {
+      "decision_date": "2026-01-01",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-02",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-03",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-04",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-05",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-06",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-07",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-08",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-09",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-10",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-11",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-12",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-13",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-14",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-15",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-16",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-17",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-18",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-19",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-20",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-21",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-22",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-23",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-24",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-25",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-26",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-27",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-28",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-29",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-30",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    },
+    {
+      "decision_date": "2026-01-31",
+      "eligible_forecast_hours": 24,
+      "actual_settlement_periods": 48
+    }
+  ],
+  "forecast_publication_batches": 280
+}
