@@ -65,7 +65,7 @@ The most important modeling choice is resolution: hourly forecasts are compared 
 
 ## 6. Close with evidence and limits — 45 seconds
 
-State the checks actually completed: 83 backend tests, 8 frontend tests, production build, independent real-data recalculation, real API requests, browser review, and both healthy Docker services.
+State the checks actually completed: 88 backend tests, 8 frontend tests, production build, independent real-data recalculation, real API requests, browser review, and both healthy Docker services.
 
 State that Vercel configuration and deployment instructions are ready, but hosted deployment has not been verified in this environment. Do not present the local Docker URL as a public live deployment. The video and live URL placeholders remain until recording and deployment are complete.
 

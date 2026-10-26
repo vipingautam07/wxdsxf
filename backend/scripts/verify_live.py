@@ -18,7 +18,15 @@ import httpx
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def verify(base_url: str, output: Path | None = None):
+def require_allowed_origin(response: httpx.Response, origin: str) -> None:
+    if response.headers.get("access-control-allow-origin") != origin:
+        raise AssertionError(
+            f"CORS did not allow {origin} on {response.request.url}. "
+            "Set CORS_ORIGINS on the backend project and redeploy it."
+        )
+
+
+def verify(base_url: str, output: Path | None = None, origin: str | None = None):
     paths = [
         "/api/health",
         "/api/overview",
@@ -29,12 +37,21 @@ def verify(base_url: str, output: Path | None = None):
         "/api/coverage",
     ]
     checks, responses = [], {}
-    with httpx.Client(timeout=15) as client:
+    with httpx.Client(timeout=15, headers={"Origin": origin} if origin else {}) as client:
+        if origin:
+            preflight = client.options(
+                base_url + "/api/day",
+                headers={"Access-Control-Request-Method": "GET"},
+            )
+            require_allowed_origin(preflight, origin)
+            preflight.raise_for_status()
         for path in paths:
             start = time.perf_counter()
             response = client.get(base_url + path)
             elapsed = time.perf_counter() - start
             response.raise_for_status()
+            if origin:
+                require_allowed_origin(response, origin)
             responses[path] = response.json()
             checks.append(
                 {
@@ -110,6 +127,7 @@ def verify(base_url: str, output: Path | None = None):
         assert math.isclose(value, accuracy["metrics"][key], rel_tol=1e-12), key
     report = {
         "base_url": base_url,
+        "cors_origin_checked": origin,
         "verified_at": datetime.now(UTC).isoformat(),
         "snapshot_id": data["snapshot_id"],
         "source_mode": data["source_mode"],
@@ -134,5 +152,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-url", default="http://127.0.0.1:8000")
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--origin", help="Exact browser origin to verify, without a trailing slash")
     args = parser.parse_args()
-    verify(args.base_url.rstrip("/"), args.output)
+    verify(args.base_url.rstrip("/"), args.output, args.origin)

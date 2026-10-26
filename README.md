@@ -4,10 +4,11 @@
 
 WindScope reconstructs the wind generation forecast available when a day-ahead purchasing decision was made, compares it with subsequently reported generation, and makes forecast error and revision history inspectable.
 
-**Live application:** `[TODO: add verified Vercel frontend URL]`  
+**Live application:** [WindScope](https://wxdsxf-hvqf.vercel.app)
+
 **Demo video:** `[TODO: add recorded walkthrough URL]`
 
-The full application is implemented and verified locally, including both Docker containers. Vercel deployment configurations and exact steps are provided; **no live Vercel deployment has been performed or verified** in this environment.
+The full application is implemented and verified locally, including both Docker containers. The frontend and backend are deployed on Vercel, and the deployed application has been confirmed working.
 
 ## 1. Business problem and scope
 
@@ -242,11 +243,11 @@ python scripts/verify_live.py --base-url http://127.0.0.1:8080 --output ../docs/
 
 The verifier independently recomputes all monthly metrics using standard-library arithmetic over the included snapshot, without importing application metric functions.
 
-**Verified:** 83 backend tests, 8 frontend tests, TypeScript/Vite production build, backend lint/format, frontend formatting, dependency consistency, both Docker image builds, both container health checks, all seven API endpoints through Nginx, and browser checks of the UI. One upstream Starlette warning concerns its HTTPX-based TestClient deprecation; tests pass and the warning is not suppressed. Small synthetic fixtures exist only in tests.
+**Verified:** 88 backend tests, 8 frontend tests, TypeScript/Vite production build, backend lint/format, frontend formatting, dependency consistency, both Docker image builds, both container health checks, all seven API endpoints through Nginx, and browser checks of the UI. One upstream Starlette warning concerns its HTTPX-based TestClient deprecation; tests pass and the warning is not suppressed. Small synthetic fixtures exist only in tests.
 
 ## 12. Vercel deployment
 
-Deploy **two projects from this repository**. No Vercel CLI login/project connection is configured in the development environment, so hosted build/runtime behavior remains unverified.
+The live application uses **two Vercel projects from this repository**: [frontend](https://wxdsxf-hvqf.vercel.app) and [backend](https://wxdsxf.vercel.app). The steps below describe how to reproduce the deployment.
 
 | Setting | Backend project | Frontend project |
 | --- | --- | --- |
@@ -267,7 +268,7 @@ Exact dashboard procedure:
 5. Before frontend deployment, set **`VITE_API_BASE_URL=https://YOUR-BACKEND-PROJECT.vercel.app/api`** in its Production environment. This is a build-time value. Deploy and record the frontend origin.
 6. Set backend **`CORS_ORIGINS=https://YOUR-FRONTEND-PROJECT.vercel.app`** and redeploy the backend. Add any approved preview frontend origins explicitly to the corresponding backend environment; do not assume production CORS covers every preview domain.
 7. Open the frontend dashboard, accuracy and explorer directly, refresh each route, change filters, and compare displayed values with API responses. Confirm backend access is permitted by the deployment's access settings. A reachable frontend alone does not verify backend integration.
-8. Run `python scripts/verify_live.py --base-url https://YOUR-BACKEND-PROJECT.vercel.app --output ../docs/VERCEL_VERIFICATION.json` from `backend/` against the matching committed snapshot. Add verified URLs to the placeholders only after this and browser integration checks pass.
+8. Run `python scripts/verify_live.py --base-url https://YOUR-BACKEND-PROJECT.vercel.app --origin https://YOUR-FRONTEND-PROJECT.vercel.app --output ../docs/VERCEL_VERIFICATION.json` from `backend/` against the matching committed snapshot. This verifies preflight and actual-response CORS headers as well as the API data. Add verified URLs to the placeholders only after this and browser integration checks pass.
 
 CLI alternative, using an account you control:
 
@@ -298,6 +299,22 @@ The `env add` commands prompt for values; enter the URLs described above. Choose
 
 Configuration follows the current official [FastAPI](https://vercel.com/docs/frameworks/backend/fastapi), [Python runtime](https://vercel.com/docs/functions/runtimes/python), [Vite SPA](https://vercel.com/docs/frameworks/frontend/vite), and [monorepo](https://vercel.com/docs/monorepos) guidance. Docker verification does not prove Vercel deployment success.
 
+### CORS troubleshooting
+
+If a backend request returns 200 but the browser says no `Access-Control-Allow-Origin` header
+is present, configure **the backend project's** `CORS_ORIGINS` environment variable with the
+frontend's exact origin (scheme and hostname, without a trailing slash or path). For example:
+
+```text
+CORS_ORIGINS=https://wxdsxf-hvqf.vercel.app
+```
+
+Set it for the environment serving that backend URL, save, and **redeploy the backend**;
+existing deployments retain their old environment. Multiple approved origins are comma-separated.
+The frontend's `VITE_API_BASE_URL` remains `https://wxdsxf.vercel.app/api` in this example.
+Setting the variable only on the frontend cannot change backend CORS headers. Do not add
+browser-side CORS headers or use `no-cors`, which would make the JSON response unreadable.
+
 ## 13. API reference
 
 All analysis routes support optional `cutoff=HH:MM`, default `11:00`, interpreted in Europe/London.
@@ -325,7 +342,7 @@ All analysis routes support optional `cutoff=HH:MM`, default `11:00`, interprete
 - Prior reliability is limited to observations available within this pilot snapshot; January 1 has none.
 - Revision spread is descriptive, not a calibrated uncertainty interval. No causal or future-performance conclusions are inferred from January error statistics.
 - Snapshot refresh and process restart/redeployment are explicit. This is a focused pilot without authentication, live trading, or production monitoring infrastructure.
-- Vercel deployment and hosted integration remain unverified until an authorized account runs the documented steps. Demo recording and public URL placeholders remain open.
+- Demo recording and its URL remain pending.
 
 ## 15. Development workflow and verification evidence
 
@@ -346,8 +363,8 @@ Phase summaries include changed files, actual checks, issues and remaining work:
 ## 17. Demo and application links
 
 - **Demo video:** `[TODO: record the walkthrough and insert URL]`
-- **Live frontend:** `[TODO: deploy and verify, then insert URL]`
-- **Live backend:** `[TODO: deploy and verify, then insert URL]`
+- **Live frontend:** [WindScope](https://wxdsxf-hvqf.vercel.app)
+- **Live backend:** [WindScope API](https://wxdsxf.vercel.app)
 - **Local Docker application:** [http://127.0.0.1:8080](http://127.0.0.1:8080)
 
 Use the [demo walkthrough](docs/DEMO_WALKTHROUGH.md) for a client and technical-lead presentation.

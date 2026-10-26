@@ -136,6 +136,34 @@ def test_cors_permits_configured_origin_only(api):
     assert "access-control-allow-origin" not in denied.headers
 
 
+def test_cors_deployed_frontend_from_environment(monkeypatch, small_snapshot, tmp_path):
+    origin = "https://wxdsxf-hvqf.vercel.app"
+    monkeypatch.setenv("CORS_ORIGINS", f"http://localhost:5173, {origin}")
+    path = tmp_path / "snapshot.json.gz"
+    write_snapshot(small_snapshot, path)
+    with TestClient(create_app(Settings(snapshot_path=path))) as client:
+        response = client.get("/api/day?date=2026-01-15", headers={"Origin": origin})
+        assert response.status_code == 200
+        assert response.headers["access-control-allow-origin"] == origin
+        preflight = client.options(
+            "/api/day", headers={"Origin": origin, "Access-Control-Request-Method": "GET"}
+        )
+        assert preflight.status_code == 200
+        assert preflight.headers["access-control-allow-origin"] == origin
+        invalid = client.get("/api/day?date=invalid", headers={"Origin": origin})
+        assert invalid.status_code == 422
+        assert invalid.headers["access-control-allow-origin"] == origin
+        denied = client.options(
+            "/api/day",
+            headers={
+                "Origin": "https://different-project.vercel.app",
+                "Access-Control-Request-Method": "GET",
+            },
+        )
+        assert denied.status_code == 400
+        assert "access-control-allow-origin" not in denied.headers
+
+
 def test_real_elexon_snapshot_integration():
     path = Path(__file__).resolve().parents[1] / "data/processed/snapshot.json.gz"
     with TestClient(create_app(Settings(snapshot_path=path))) as client:
